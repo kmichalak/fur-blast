@@ -1,12 +1,10 @@
 #include <SDL.h>
 #include "include/window.h"
 
-using namespace furblast;
-
 int main() {
   int status = SDL_Init(SDL_INIT_VIDEO);
   if (status == 0) {
-    Window *window = new Window(800, 600, "Fur Blast");
+    GameWindow *window = new GameWindow(960, 540, "Fur Blast");
 
     SDL_Event event;
 
