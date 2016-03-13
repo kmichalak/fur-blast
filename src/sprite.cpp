@@ -3,7 +3,7 @@
 #include "game_exception.h"
 #include "sprite.h"
 
-Sprite::Sprite(const char *resourceFile, const GameWindow *window)
+Sprite::Sprite(const char *resourceFile, GameWindow *window)
     : resourceFile(resourceFile),
       window(window) {
 

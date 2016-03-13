@@ -5,13 +5,13 @@
 
 class Sprite {
  public:
-  Sprite(const char *resourceFile, const GameWindow *window);
+  Sprite(const char *resourceFile, GameWindow *window);
   virtual ~Sprite();
 
   void render(int x, int y);
  private:
   const char *resourceFile;
-  const GameWindow *window;
+  GameWindow *window;
 
   SDL_Texture *texture;
   SDL_Rect sourceRectangle;

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <SDL2/SDL_video.h>
+#include <SDL2/SDL_render.h>
 
 
 class GameWindow {
@@ -12,12 +13,13 @@ class GameWindow {
 
   void renderImage(SDL_Texture *texture,
                    SDL_Rect *source,
-                   SDL_Rect *destination)const;
+                   SDL_Rect *destination);
 
   void destroy();
   void update();
+  void render();
 
-  SDL_Texture *loadImage(const char* resourceFile) const;
+  SDL_Texture *loadImage(const char* resourceFile);
 
  private:
   void resize(unsigned int width, unsigned int height, std::string title);

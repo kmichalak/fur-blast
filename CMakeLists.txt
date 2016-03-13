@@ -45,8 +45,8 @@ target_link_libraries(fur_blast ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY})
 #
 # Build tests when cmake was run with -Dtests=BOOL:ON flag
 #
-if (tests)
-
-    add_subdirectory(test)
-
-endif()
+#if (tests)
+#
+#    add_subdirectory(test)
+#
+#endif()

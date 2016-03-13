@@ -18,8 +18,7 @@ void GameWindow::resize(unsigned int width,
   this->window = SDL_CreateWindow(title.c_str(),
                                   SDL_WINDOWPOS_UNDEFINED,
                                   SDL_WINDOWPOS_UNDEFINED,
-                                  width,
-                                  height,
+                                  width, height,
                                   SDL_WINDOW_SHOWN);
   if (!(this->window)) {
     throw SDLException(SDL_GetError());
@@ -49,21 +48,25 @@ void GameWindow::destroy() {
 }
 
 void GameWindow::update() {
-  SDL_RenderClear(this->renderer);
+  SDL_RenderClear(renderer);
 
   // do drawing here
   // ....uhmmm, not really. Drawing should be performed in other place.
   // I need to think about how to create better structure for the game stuff.
-  SDL_RenderPresent(this->renderer);
+  SDL_RenderPresent(renderer);
+}
+
+void GameWindow::render() {
+
 }
 
 void GameWindow::renderImage(SDL_Texture *texture,
                              SDL_Rect *source,
-                             SDL_Rect *destination)const {
+                             SDL_Rect *destination) {
 
-  SDL_RenderCopy(this->renderer, texture, source, destination);
+  SDL_RenderCopy(renderer, texture, source, destination);
 }
 
-SDL_Texture *GameWindow::loadImage(const char *resourceFile) const {
-  return IMG_LoadTexture(this->renderer, resourceFile);
+SDL_Texture *GameWindow::loadImage(const char *resourceFile) {
+  return IMG_LoadTexture(renderer, resourceFile);
 }
