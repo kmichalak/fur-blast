@@ -1,23 +1,13 @@
 #include <SDL.h>
 #include "include/window.h"
-
-using namespace furblast;
+#include "include/state_manager.h"
 
 int main() {
   int status = SDL_Init(SDL_INIT_VIDEO);
   if (status == 0) {
-    Window *window = new Window(800, 600, "Fur Blast");
-
-    SDL_Event event;
-
-    while(1) {
-      SDL_PollEvent(&event);
-      if (event.type == SDL_QUIT) {
-        break;
-      }
-      window->update();
-    }
-    delete window;
+    GameWindow *window = new GameWindow(960, 540, "Fur Blast");
+    StateManager stateManager(window);
+    stateManager.run();
   }
   SDL_Quit();
 
