@@ -44,27 +44,14 @@ void GameWindow::destroy() {
   if (this->window) {
     SDL_DestroyWindow(this->window);
   }
-
-}
-
-void GameWindow::update() {
-  SDL_RenderClear(renderer);
-
-  // do drawing here
-  // ....uhmmm, not really. Drawing should be performed in other place.
-  // I need to think about how to create better structure for the game stuff.
-  SDL_RenderPresent(renderer);
-}
-
-void GameWindow::render() {
-
 }
 
 void GameWindow::renderImage(SDL_Texture *texture,
                              SDL_Rect *source,
                              SDL_Rect *destination) {
-
+  SDL_RenderClear(renderer);
   SDL_RenderCopy(renderer, texture, source, destination);
+  SDL_RenderPresent(renderer);
 }
 
 SDL_Texture *GameWindow::loadImage(const char *resourceFile) {

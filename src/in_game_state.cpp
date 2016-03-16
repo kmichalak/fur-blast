@@ -1,8 +1,16 @@
 #include "in_game_state.h"
 #include "input.h"
 
-InGameState::~InGameState() {
+InGameState::InGameState() {
 
+}
+
+InGameState::~InGameState() {
+  delete this->player;
+}
+
+void InGameState::init(GameWindow *window) {
+  this->player = new Player(window);
 }
 
 GameState::StateType InGameState::update() {
@@ -25,11 +33,8 @@ void InGameState::handleInput() {
     this->shouldQuit = true;
   }
 
-  // Handle following keys
-  // ESC
-  // KEY UP
-  // KEY DOWN
-  // KEY LEFT
-  // KEY RIGHT
+  if (this->player) {
+    this->player->update();
+  }
 
 }

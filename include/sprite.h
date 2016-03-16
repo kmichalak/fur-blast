@@ -3,6 +3,9 @@
 
 #include "window.h"
 
+#define ROWS_NUM 4
+#define COLS_NUM 4
+
 class Sprite {
  public:
   Sprite(const char *resourceFile, GameWindow *window);

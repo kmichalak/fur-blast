@@ -16,8 +16,6 @@ class GameWindow {
                    SDL_Rect *destination);
 
   void destroy();
-  void update();
-  void render();
 
   SDL_Texture *loadImage(const char* resourceFile);
 
