@@ -11,9 +11,7 @@ class InGameState : public GameState {
   virtual ~InGameState();
 
   void init(GameWindow *window);
-
   virtual StateType update();
-
 
  private:
   bool shouldQuit;
@@ -21,6 +19,7 @@ class InGameState : public GameState {
 
   Player *player;
   GameWindow *window;
+  Rectangle *gameArea;
 };
 
 #endif //FUR_BLAST_IN_GAME_STATE_H

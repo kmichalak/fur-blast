@@ -4,6 +4,7 @@
 #include <string>
 #include <SDL2/SDL_video.h>
 #include <SDL2/SDL_render.h>
+#include "rectangle.h"
 
 
 class GameWindow {
@@ -19,6 +20,7 @@ class GameWindow {
 
   SDL_Texture *loadImage(const char* resourceFile);
   void toggleFullscreen();
+  Rectangle *getBoundaries();
 
  private:
   void resize(unsigned int width, unsigned int height, std::string title);

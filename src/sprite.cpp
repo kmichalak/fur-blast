@@ -46,3 +46,10 @@ void Sprite::changeFrameRow(int row) {
 void Sprite::changeFrameCol(int col) {
   this->sourceRectangle.x = sourceRectangle.w * col;
 }
+
+Rectangle *Sprite::getBoundaries() {
+  return new Rectangle(
+          this->sourceRectangle.x, this->sourceRectangle.y,
+          this->sourceRectangle.w, this->sourceRectangle.h
+  );
+}

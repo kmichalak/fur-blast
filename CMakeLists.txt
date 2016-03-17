@@ -35,7 +35,7 @@ include_directories(
         ${FUR_BLAST_HEADERS_ROOT}
 )
 
-add_executable(fur_blast ${FUR_BLAST_HEADERS} ${FUR_BLAST_SOURCES} include/falling_object.h)
+add_executable(fur_blast ${FUR_BLAST_HEADERS} ${FUR_BLAST_SOURCES})
 
 #
 # Link the libraries to the executable.

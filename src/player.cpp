@@ -3,8 +3,7 @@
 
 Player::Player(GameWindow *window) {
   this->sprite = new Sprite("img/h1.png", window);
-  this->x = 0;
-  this->y = 0;
+  this->setBoundaries(sprite->getBoundaries());
 }
 
 Player::~Player() {
@@ -12,25 +11,46 @@ Player::~Player() {
 }
 
 void Player::update() {
-
   InputManager &manager = InputManager::getInstance();
   if (manager.isKeyPressed(SDL_SCANCODE_LEFT)) {
-    this->updateFrames(RUN_LEFT_FRAMES, -MOVE_SPEED);
-  } else
+    this->updateFrames(RUN_LEFT_FRAMES);
+    if (!this->hitLeftEnd()) {
+      this->boundaries->x -= MOVE_SPEED;
+    }
+  }
   if (manager.isKeyPressed(SDL_SCANCODE_RIGHT)) {
-    this->updateFrames(RUN_RIGHT_FRAMES, MOVE_SPEED);
-  } else
-  {
-    // reset animation
+    this->updateFrames(RUN_RIGHT_FRAMES);
+    if (!this->hitRightEnd()) {
+      this->boundaries->x += MOVE_SPEED;
+    }
+  }
+  if (manager.isKeyPressed(SDL_SCANCODE_UP)) {
+    if (!this->hitTopEnd()) {
+      this->boundaries->y -= MOVE_SPEED;
+    }
+  }
+  if (manager.isKeyPressed(SDL_SCANCODE_DOWN)) {
+    if (!this->hitBottomEnd()) {
+      this->boundaries->y += MOVE_SPEED;
+    }
+  }
+
+  if ((manager.isKeyUp(SDL_SCANCODE_LEFT)
+       || !manager.isKeyPressed(SDL_SCANCODE_LEFT))
+      && (manager.isKeyUp(SDL_SCANCODE_RIGHT)
+          || !manager.isKeyPressed(SDL_SCANCODE_RIGHT))
+      && (manager.isKeyUp(SDL_SCANCODE_UP)
+          || !manager.isKeyPressed(SDL_SCANCODE_UP))
+      && (manager.isKeyUp(SDL_SCANCODE_DOWN)
+          || !manager.isKeyPressed(SDL_SCANCODE_DOWN))) {
     this->sprite->changeFrameCol(3);
   }
 
-  this->sprite->render(int(x), int(y));
+  this->sprite->render(int(this->boundaries->x), int(this->boundaries->y));
 }
 
-void Player::updateFrames(int frameRow, double moveSpeed) {
-  int frameCol = int((SDL_GetTicks() / 100 ) % 4);
+void Player::updateFrames(int frameRow) {
+  int frameCol = int((SDL_GetTicks() / 100) % 4);
   this->sprite->changeFrameCol(frameCol);
   this->sprite->changeFrameRow(frameRow);
-  this->x += moveSpeed;
 }
