@@ -31,9 +31,6 @@ Sprite::~Sprite() {
 }
 
 void Sprite::render(int x, int y) {
-//  this->sourceRectangle.x = 0;
-//  this->sourceRectangle.y = 0;
-
   SDL_Rect source = this->sourceRectangle;
   SDL_Rect destination = {
       x, y,
