@@ -20,6 +20,13 @@ void Player::update() {
   if (manager.isKeyPressed(SDL_SCANCODE_RIGHT)) {
     this->updateFrames(RUN_RIGHT_FRAMES, MOVE_SPEED);
   } else
+  if (manager.isKeyPressed(SDL_SCANCODE_UP)) {
+    this->y -= MOVE_SPEED;
+  } else
+  if (manager.isKeyPressed(SDL_SCANCODE_DOWN)) {
+    this->y += MOVE_SPEED;
+  }
+  else
   {
     // reset animation
     this->sprite->changeFrameCol(3);

@@ -11,9 +11,7 @@ class InGameState : public GameState {
   virtual ~InGameState();
 
   void init(GameWindow *window);
-
   virtual StateType update();
-
 
  private:
   bool shouldQuit;
