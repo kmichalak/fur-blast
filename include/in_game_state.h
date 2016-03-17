@@ -20,6 +20,7 @@ class InGameState : public GameState {
   void handleInput();
 
   Player *player;
+  GameWindow *window;
 };
 
 #endif //FUR_BLAST_IN_GAME_STATE_H

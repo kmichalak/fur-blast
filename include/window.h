@@ -18,11 +18,14 @@ class GameWindow {
   void destroy();
 
   SDL_Texture *loadImage(const char* resourceFile);
+  void toggleFullscreen();
 
  private:
   void resize(unsigned int width, unsigned int height, std::string title);
   SDL_Window *window;
   SDL_Renderer *renderer;
+  bool isInFullScreen = false;
+
 
 };
 

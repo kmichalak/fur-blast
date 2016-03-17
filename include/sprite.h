@@ -15,6 +15,8 @@ class Sprite {
 
  void changeFrameRow(int i);
 
+ void changeFrameCol(int i);
+
   private:
   const char *resourceFile;
   GameWindow *window;

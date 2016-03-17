@@ -57,3 +57,12 @@ void GameWindow::renderImage(SDL_Texture *texture,
 SDL_Texture *GameWindow::loadImage(const char *resourceFile) {
   return IMG_LoadTexture(renderer, resourceFile);
 }
+
+void GameWindow::toggleFullscreen() {
+  if (this->isInFullScreen) {
+    SDL_SetWindowFullscreen(this->window, 0);
+  } else {
+    SDL_SetWindowFullscreen(this->window, SDL_WINDOW_FULLSCREEN);
+  }
+  this->isInFullScreen = !(this->isInFullScreen);
+}

@@ -13,23 +13,24 @@ Player::~Player() {
 
 void Player::update() {
 
-  // Handle following keys
-  // ESC
-  // KEY UP
-  // KEY DOWN
-  // KEY LEFT
-  // KEY RIGHT
-
   InputManager &manager = InputManager::getInstance();
   if (manager.isKeyPressed(SDL_SCANCODE_LEFT)) {
-    this->sprite->changeFrameRow(RUN_LEFT_FRAMES);
-    this->x--;
-  }
+    this->updateFrames(RUN_LEFT_FRAMES, -MOVE_SPEED);
+  } else
   if (manager.isKeyPressed(SDL_SCANCODE_RIGHT)) {
-    this->sprite->changeFrameRow(RUN_RIGHT_FRAMES);
-    this->x++;
+    this->updateFrames(RUN_RIGHT_FRAMES, MOVE_SPEED);
+  } else
+  {
+    // reset animation
+    this->sprite->changeFrameCol(3);
   }
 
-  this->sprite->render(x, y);
+  this->sprite->render(int(x), int(y));
+}
 
+void Player::updateFrames(int frameRow, double moveSpeed) {
+  int frameCol = int((SDL_GetTicks() / 100 ) % 4);
+  this->sprite->changeFrameCol(frameCol);
+  this->sprite->changeFrameRow(frameRow);
+  this->x += moveSpeed;
 }

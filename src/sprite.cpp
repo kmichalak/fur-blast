@@ -42,3 +42,7 @@ void Sprite::render(int x, int y) {
 void Sprite::changeFrameRow(int row) {
   this->sourceRectangle.y = sourceRectangle.h * row;
 }
+
+void Sprite::changeFrameCol(int col) {
+  this->sourceRectangle.x = sourceRectangle.w * col;
+}

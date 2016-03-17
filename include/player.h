@@ -6,6 +6,7 @@
 
 #define RUN_LEFT_FRAMES 0
 #define RUN_RIGHT_FRAMES 1
+#define MOVE_SPEED 0.3
 
 class Player {
  public:
@@ -15,9 +16,10 @@ class Player {
 
  private:
   Sprite *sprite;
-  int x;
-  int y;
+  float x;
+  float y;
 
+ void updateFrames(int frameRow, double moveSpeed);
 };
 
 #endif //FUR_BLAST_PLAYER_H
