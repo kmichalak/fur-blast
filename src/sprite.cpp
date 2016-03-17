@@ -31,8 +31,8 @@ Sprite::~Sprite() {
 }
 
 void Sprite::render(int x, int y) {
-  this->sourceRectangle.x = 0;
-  this->sourceRectangle.y = 0;
+//  this->sourceRectangle.x = 0;
+//  this->sourceRectangle.y = 0;
 
   SDL_Rect source = this->sourceRectangle;
   SDL_Rect destination = {
@@ -40,4 +40,8 @@ void Sprite::render(int x, int y) {
       this->sourceRectangle.h, this->sourceRectangle.w
   };
   window->renderImage(this->texture, &source, &destination);
+}
+
+void Sprite::changeFrameRow(int row) {
+  this->sourceRectangle.y = sourceRectangle.h * row;
 }

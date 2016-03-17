@@ -12,7 +12,10 @@ class Sprite {
   virtual ~Sprite();
 
   void render(int x, int y);
- private:
+
+ void changeFrameRow(int i);
+
+  private:
   const char *resourceFile;
   GameWindow *window;
 

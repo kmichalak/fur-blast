@@ -22,9 +22,11 @@ void Player::update() {
 
   InputManager &manager = InputManager::getInstance();
   if (manager.isKeyPressed(SDL_SCANCODE_LEFT)) {
+    this->sprite->changeFrameRow(RUN_LEFT_FRAMES);
     this->x--;
   }
   if (manager.isKeyPressed(SDL_SCANCODE_RIGHT)) {
+    this->sprite->changeFrameRow(RUN_RIGHT_FRAMES);
     this->x++;
   }
 
