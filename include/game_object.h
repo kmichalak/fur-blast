@@ -11,6 +11,12 @@ class GameObject {
    void setBoundaries(Rectangle *boundaries);
    bool isInGameAreaBoundaries();
 
+  void moveLeft(float moveSpeed);
+
+  void moveRight(float moveSpeed);
+
+  void moveDown(float moveSpeed);
+
   protected:
    bool hitRightEnd();
    bool hitLeftEnd();

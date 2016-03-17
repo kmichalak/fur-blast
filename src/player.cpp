@@ -11,22 +11,27 @@ Player::~Player() {
 }
 
 void Player::update() {
+  int currentTime = SDL_GetTicks();
+  if (this->lastTime != 0) {
+    int timeDelta = currentTime - this->lastTime;
+    FallingObject::update(timeDelta);
+  }
+  this->lastTime = currentTime;
+
   InputManager &manager = InputManager::getInstance();
+
   if (manager.isKeyPressed(SDL_SCANCODE_LEFT)) {
     this->updateFrames(RUN_LEFT_FRAMES);
-    if (!this->hitLeftEnd()) {
-      this->boundaries->x -= MOVE_SPEED;
-    }
+    this->moveLeft(MOVE_SPEED);
   }
   if (manager.isKeyPressed(SDL_SCANCODE_RIGHT)) {
     this->updateFrames(RUN_RIGHT_FRAMES);
-    if (!this->hitRightEnd()) {
-      this->boundaries->x += MOVE_SPEED;
-    }
+    this->moveRight(MOVE_SPEED);
   }
   if (manager.isKeyPressed(SDL_SCANCODE_UP)) {
     if (!this->hitTopEnd()) {
-      this->boundaries->y -= MOVE_SPEED;
+      this->throwUp(0);
+//      this->boundaries->y -= MOVE_SPEED * 2;
     }
   }
   if (manager.isKeyPressed(SDL_SCANCODE_DOWN)) {
