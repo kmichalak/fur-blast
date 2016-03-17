@@ -1,8 +1,18 @@
 #include "in_game_state.h"
 #include "input.h"
 
-InGameState::~InGameState() {
+InGameState::InGameState() {
 
+}
+
+InGameState::~InGameState() {
+  delete this->player;
+  delete this->window;
+}
+
+void InGameState::init(GameWindow *window) {
+  this->window = window;
+  this->player = new Player(window);
 }
 
 GameState::StateType InGameState::update() {
@@ -24,12 +34,13 @@ void InGameState::handleInput() {
       || input.isKeyPressed(SDL_SCANCODE_ESCAPE)) {
     this->shouldQuit = true;
   }
+  if (input.isKeyDown(SDL_SCANCODE_F)
+      || input.isKeyPressed(SDL_SCANCODE_F)) {
+    this->window->toggleFullscreen();
+  }
 
-  // Handle following keys
-  // ESC
-  // KEY UP
-  // KEY DOWN
-  // KEY LEFT
-  // KEY RIGHT
+  if (this->player) {
+    this->player->update();
+  }
 
 }

@@ -1,5 +1,4 @@
 #include <in_game_state.h>
-#include "game_state.h"
 #include "state_manager.h"
 #include "input.h"
 
@@ -14,6 +13,7 @@ StateManager::~StateManager() {
 void StateManager::run() {
 
   InGameState currentState;
+  currentState.init(this->window);
   GameState::StateType currentStateType = GameState::StateType::IN_GAME;
   // run the main game loop
   while (currentStateType != GameState::StateType::QUIT) {
@@ -26,10 +26,6 @@ void StateManager::run() {
     } else {
       currentStateType = currentState.update();
     }
-
-    // Update window content
-    window->update();
-    window->render();
 
   }
 }

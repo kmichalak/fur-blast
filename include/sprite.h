@@ -3,13 +3,21 @@
 
 #include "window.h"
 
+#define ROWS_NUM 4
+#define COLS_NUM 4
+
 class Sprite {
  public:
   Sprite(const char *resourceFile, GameWindow *window);
   virtual ~Sprite();
 
   void render(int x, int y);
- private:
+
+ void changeFrameRow(int i);
+
+ void changeFrameCol(int i);
+
+  private:
   const char *resourceFile;
   GameWindow *window;
 

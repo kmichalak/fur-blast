@@ -22,8 +22,8 @@ void Sprite::init() {
 
   this->sourceRectangle.x = 0;
   this->sourceRectangle.y = 0;
-  this->sourceRectangle.w = width;
-  this->sourceRectangle.h = height;
+  this->sourceRectangle.w = width / COLS_NUM;
+  this->sourceRectangle.h = height / ROWS_NUM;
 }
 
 Sprite::~Sprite() {
@@ -31,13 +31,18 @@ Sprite::~Sprite() {
 }
 
 void Sprite::render(int x, int y) {
-  this->sourceRectangle.x = x;
-  this->sourceRectangle.y = y;
-
   SDL_Rect source = this->sourceRectangle;
   SDL_Rect destination = {
-      this->sourceRectangle.x, this->sourceRectangle.y,
+      x, y,
       this->sourceRectangle.h, this->sourceRectangle.w
   };
   window->renderImage(this->texture, &source, &destination);
+}
+
+void Sprite::changeFrameRow(int row) {
+  this->sourceRectangle.y = sourceRectangle.h * row;
+}
+
+void Sprite::changeFrameCol(int col) {
+  this->sourceRectangle.x = sourceRectangle.w * col;
 }
