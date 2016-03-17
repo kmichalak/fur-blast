@@ -66,3 +66,12 @@ void GameWindow::toggleFullscreen() {
   }
   this->isInFullScreen = !(this->isInFullScreen);
 }
+
+Rectangle *GameWindow::getBoundaries() {
+  Rectangle *windowBoundaries = new Rectangle(0, 0, 0, 0);
+  int width, height;
+  SDL_GetWindowSize(this->window, &width, &height);
+  windowBoundaries->width = width;
+  windowBoundaries->height = height;
+  return windowBoundaries;
+}

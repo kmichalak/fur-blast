@@ -2,6 +2,7 @@
 #define FUR_BLAST_SPRITE_H
 
 #include "window.h"
+#include "rectangle.h"
 
 #define ROWS_NUM 4
 #define COLS_NUM 4
@@ -13,11 +14,13 @@ class Sprite {
 
   void render(int x, int y);
 
- void changeFrameRow(int i);
+  void changeFrameRow(int i);
 
- void changeFrameCol(int i);
+  void changeFrameCol(int i);
 
-  private:
+  Rectangle *getBoundaries();
+
+ private:
   const char *resourceFile;
   GameWindow *window;
 

@@ -8,11 +8,14 @@ InGameState::InGameState() {
 InGameState::~InGameState() {
   delete this->player;
   delete this->window;
+  delete this->gameArea;
 }
 
 void InGameState::init(GameWindow *window) {
   this->window = window;
   this->player = new Player(window);
+  this->gameArea = window->getBoundaries();
+  this->player->setGameAreaBoundaries(this->gameArea);
 }
 
 GameState::StateType InGameState::update() {

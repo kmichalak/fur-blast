@@ -19,6 +19,7 @@ class InGameState : public GameState {
 
   Player *player;
   GameWindow *window;
+  Rectangle *gameArea;
 };
 
 #endif //FUR_BLAST_IN_GAME_STATE_H
