@@ -30,8 +30,7 @@ void Player::update() {
   }
   if (manager.isKeyPressed(SDL_SCANCODE_UP)) {
     if (!this->hitTopEnd()) {
-      this->throwUp(0);
-//      this->boundaries->y -= MOVE_SPEED * 2;
+      this->throwUp();
     }
   }
   if (manager.isKeyPressed(SDL_SCANCODE_DOWN)) {

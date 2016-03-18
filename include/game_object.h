@@ -11,22 +11,25 @@ class GameObject {
    void setBoundaries(Rectangle *boundaries);
    bool isInGameAreaBoundaries();
 
-  void moveLeft(float moveSpeed);
+   virtual void moveLeft(float moveSpeed);
 
-  void moveRight(float moveSpeed);
+   virtual void moveRight(float moveSpeed);
 
-  void moveDown(float moveSpeed);
+   virtual void moveUp(float moveSpeed);
+
+   virtual void moveDown(float moveSpeed);
 
   protected:
-   bool hitRightEnd();
-   bool hitLeftEnd();
-   bool hitTopEnd();
-   bool hitBottomEnd();
+   virtual bool hitRightEnd();
+   virtual bool hitLeftEnd();
+   virtual bool hitTopEnd();
+   virtual bool hitBottomEnd();
 
    Rectangle *boundaries;
 
   private:
    Rectangle *gameArea;
+
 
 };
 

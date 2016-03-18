@@ -3,19 +3,24 @@
 
 #include "game_object.h"
 
+#define GRAVITY_ACCELERATION 0.2
+#define INITIAL_UP_VELOCITY 3
+
 class FallingObject : public GameObject {
   public:
    FallingObject();
    virtual ~FallingObject();
    void update(float dt);
+   void throwUp();
 
-  void throwUp(float dt);
-
-  private:
-   float acceleration = 0.1;
-   float throwUpAcceleration = 0.1;
+  protected:
    float velocity = 1.0;
    float upVelocity = 0;
+
+  bool thrownUp;
+  float lastTimeDelta;
+  bool isInAir;
+
 
 };
 

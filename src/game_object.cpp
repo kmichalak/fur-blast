@@ -45,3 +45,9 @@ void GameObject::moveDown(float moveSpeed) {
     this->boundaries->y += moveSpeed;
   }
 }
+
+void GameObject::moveUp(float moveSpeed) {
+  if (!this->hitTopEnd()) {
+    this->boundaries->y -= moveSpeed;
+  }
+}

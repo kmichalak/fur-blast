@@ -9,22 +9,33 @@ FallingObject::~FallingObject() {
 }
 
 void FallingObject::update(float dt) {
-  this->velocity = this->acceleration * dt ;// 100;
+  float velocity = float(GRAVITY_ACCELERATION) * dt;
+  float upVelocity = 0;
 
-  this->upVelocity = 1 - this->velocity * dt ;// 100;
-  if (this->upVelocity > 0) {
-    this->upVelocity = 0;
+  if (thrownUp) {
+    upVelocity = float(
+            INITIAL_UP_VELOCITY - (GRAVITY_ACCELERATION * this->lastTimeDelta)
+    );
+    std::cout << "Up velocity: " << upVelocity << std::endl;
+    std::cout << "Last time delta: " << dt << std::endl;
+    this->lastTimeDelta += dt / 10;
   }
 
-  float currentVelocity = this->velocity - this->upVelocity;
+  if (upVelocity <= 0.01 && thrownUp) {
+    thrownUp = false;
+    this->lastTimeDelta = 0;
+  }
 
-//  std::cout << currentVelocity << std::endl;
-  this->moveDown(currentVelocity);
+  if (this->hitBottomEnd()) {
+    this->isInAir = false;
+  }
+  this->moveUp(upVelocity);
+  this->moveDown(velocity);
 }
 
-void FallingObject::throwUp(float dt) {
-  // Current velocity depends on the current time delta and initial velocity
-  // so v = v0 - a*dt
-  // Initial velocity is always 1.
-  this->upVelocity = -1;
+void FallingObject::throwUp() {
+  if (!isInAir) { // just cannot jump when there is no ground under the feet
+    this->thrownUp = true;
+    this->isInAir = true;
+  }
 }
