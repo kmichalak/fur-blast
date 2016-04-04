@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.0)
 project(fur_blast)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
@@ -18,7 +18,7 @@ find_package(SDL2_image REQUIRED)
 # Define headers and sources directories.
 #
 file(GLOB FUR_BLAST_HEADERS ${FUR_BLAST_HEADERS_ROOT}/*.h)
-file(GLOB FUR_BLAST_SOURCES main.cpp ${FUR_BLAST_SOURCES_ROOT}/*.cpp)
+file(GLOB FUR_BLAST_SOURCES ${FUR_BLAST_SOURCES_ROOT}/*.cpp)
 
 #
 # Copy resources to the binaries directory to make it possible to use them
@@ -35,7 +35,7 @@ include_directories(
         ${FUR_BLAST_HEADERS_ROOT}
 )
 
-add_executable(fur_blast ${FUR_BLAST_HEADERS} ${FUR_BLAST_SOURCES})
+add_executable(fur_blast ${FUR_BLAST_HEADERS} ${FUR_BLAST_SOURCES} main.cpp)
 
 #
 # Link the libraries to the executable.
@@ -45,8 +45,8 @@ target_link_libraries(fur_blast ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY})
 #
 # Build tests when cmake was run with -Dtests=BOOL:ON flag
 #
-#if (tests)
-#
-#    add_subdirectory(test)
-#
-#endif()
+if (tests)
+
+    add_subdirectory(test)
+
+endif()

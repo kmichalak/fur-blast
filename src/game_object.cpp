@@ -27,3 +27,27 @@ bool GameObject::hitTopEnd() {
 bool GameObject::hitBottomEnd() {
   return this->gameArea->height <= this->boundaries->y + this->boundaries->height;
 }
+
+void GameObject::moveRight(float moveSpeed) {
+  if (!this->hitRightEnd()) {
+    this->boundaries->x += moveSpeed;
+  }
+}
+
+void GameObject::moveLeft(float moveSpeed) {
+  if (!this->hitLeftEnd()) {
+    this->boundaries->x -= moveSpeed;
+  }
+}
+
+void GameObject::moveDown(float moveSpeed) {
+  if (!this->hitBottomEnd()) {
+    this->boundaries->y += moveSpeed;
+  }
+}
+
+void GameObject::moveUp(float moveSpeed) {
+  if (!this->hitTopEnd()) {
+    this->boundaries->y -= moveSpeed;
+  }
+}
