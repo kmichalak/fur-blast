@@ -4,31 +4,38 @@
 #include "rectangle.h"
 
 class GameObject {
-  public:
-   GameObject();
-   virtual ~GameObject();
-   void setGameAreaBoundaries(Rectangle *boundaries);
-   void setBoundaries(Rectangle *boundaries);
-   bool isInGameAreaBoundaries();
+public:
+    GameObject();
 
-   virtual void moveLeft(float moveSpeed);
+    virtual ~GameObject();
 
-   virtual void moveRight(float moveSpeed);
+    void setGameAreaBoundaries(Rectangle *boundaries);
 
-   virtual void moveUp(float moveSpeed);
+    void setBoundaries(Rectangle *boundaries);
 
-   virtual void moveDown(float moveSpeed);
+    bool isInGameAreaBoundaries();
 
-  protected:
-   virtual bool hitRightEnd();
-   virtual bool hitLeftEnd();
-   virtual bool hitTopEnd();
-   virtual bool hitBottomEnd();
+    virtual void moveLeft(float moveSpeed);
 
-   Rectangle *boundaries;
+    virtual void moveRight(float moveSpeed);
 
-  private:
-   Rectangle *gameArea;
+    virtual void moveUp(float moveSpeed);
+
+    virtual void moveDown(float moveSpeed);
+
+protected:
+    virtual bool hitRightEnd();
+
+    virtual bool hitLeftEnd();
+
+    virtual bool hitTopEnd();
+
+    virtual bool hitBottomEnd();
+
+    Rectangle *boundaries;
+
+private:
+    Rectangle *gameArea;
 
 
 };

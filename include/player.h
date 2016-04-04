@@ -10,16 +10,18 @@
 #define MOVE_SPEED 0.3
 
 class Player : public FallingObject {
- public:
-  Player(GameWindow *window);
-  virtual ~Player();
-  void update();
+public:
+    Player(GameWindow *window);
 
- private:
-  Sprite *sprite;
-  int lastTime = 0;
+    virtual ~Player();
 
-  void updateFrames(int frameRow);
+    void update();
+
+private:
+    Sprite *sprite;
+    int lastTime = 0;
+
+    void updateFrames(int frameRow);
 };
 
 #endif //FUR_BLAST_PLAYER_H

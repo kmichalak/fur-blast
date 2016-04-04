@@ -4,13 +4,15 @@
 #include "window.h"
 
 class StateManager {
- public:
-  StateManager(GameWindow *window);
-  virtual ~StateManager();
-  void run();
+public:
+    StateManager(GameWindow *window);
 
- private:
-  GameWindow *window;
+    virtual ~StateManager();
+
+    void run();
+
+private:
+    GameWindow *window;
 };
 
 #endif //FUR_BLAST_STATE_MANAGER_H

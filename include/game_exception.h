@@ -4,18 +4,16 @@
 #include <exception>
 #include <string>
 
-class SDLException: public std::exception {
- public:
-  SDLException (const char *msg) : error_msg (msg)
-  { }
+class SDLException : public std::exception {
+public:
+    SDLException(const char *msg) : error_msg(msg) { }
 
-  virtual const char *what () const throw ()
-  {
-    return this->error_msg.c_str ();
-  }
+    virtual const char *what() const throw() {
+        return this->error_msg.c_str();
+    }
 
- private:
-  std::string error_msg;
+private:
+    std::string error_msg;
 };
 
 #endif //FUR_BLAST_EXCEPTION_H

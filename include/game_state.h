@@ -4,15 +4,17 @@
 #include "window.h"
 
 class GameState {
- public:
-  enum StateType {
-    QUIT,
-    IN_GAME
-  };
+public:
+    enum StateType {
+        QUIT,
+        IN_GAME
+    };
 
-  virtual ~GameState() { };
-  virtual StateType update() = 0;
-  virtual void init(GameWindow *window) = 0;
+    virtual ~GameState() { };
+
+    virtual StateType update() = 0;
+
+    virtual void init(GameWindow *window) = 0;
 
 };
 

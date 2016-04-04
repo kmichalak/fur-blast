@@ -7,19 +7,22 @@
 #define INITIAL_UP_VELOCITY 3
 
 class FallingObject : public GameObject {
-  public:
-   FallingObject();
-   virtual ~FallingObject();
-   void update(float dt);
-   void throwUp();
+public:
+    FallingObject();
 
-  protected:
-   float velocity = 1.0;
-   float upVelocity = 0;
+    virtual ~FallingObject();
 
-  bool thrownUp;
-  float lastTimeDelta;
-  bool isInAir;
+    void update(float dt);
+
+    void throwUp();
+
+protected:
+    float velocity = 1.0;
+    float upVelocity = 0;
+
+    bool thrownUp;
+    float lastTimeDelta;
+    bool isInAir;
 
 
 };

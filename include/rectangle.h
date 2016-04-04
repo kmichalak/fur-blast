@@ -4,14 +4,15 @@
 #include <stdint.h>
 
 class Rectangle {
-  public:
-   Rectangle(int x, int y, int width, int height);
-   virtual ~Rectangle();
+public:
+    Rectangle(int x, int y, int width, int height);
 
-   float x;
-   float y;
-   float width;
-   float height;
+    virtual ~Rectangle();
+
+    float x;
+    float y;
+    float width;
+    float height;
 };
 
 #endif //FUR_BLAST_RECTANGLE_H

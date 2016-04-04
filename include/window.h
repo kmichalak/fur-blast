@@ -8,25 +8,29 @@
 
 
 class GameWindow {
- public:
-  GameWindow(unsigned int width, unsigned int height, std::string title = "");
-  virtual ~GameWindow();
+public:
+    GameWindow(unsigned int width, unsigned int height, std::string title = "");
 
-  void renderImage(SDL_Texture *texture,
-                   SDL_Rect *source,
-                   SDL_Rect *destination);
+    virtual ~GameWindow();
 
-  void destroy();
+    void renderImage(SDL_Texture *texture,
+                     SDL_Rect *source,
+                     SDL_Rect *destination);
 
-  SDL_Texture *loadImage(const char* resourceFile);
-  void toggleFullscreen();
-  Rectangle *getBoundaries();
+    void destroy();
 
- private:
-  void resize(unsigned int width, unsigned int height, std::string title);
-  SDL_Window *window;
-  SDL_Renderer *renderer;
-  bool isInFullScreen = false;
+    SDL_Texture *loadImage(const char *resourceFile);
+
+    void toggleFullscreen();
+
+    Rectangle *getBoundaries();
+
+private:
+    void resize(unsigned int width, unsigned int height, std::string title);
+
+    SDL_Window *window;
+    SDL_Renderer *renderer;
+    bool isInFullScreen = false;
 
 
 };

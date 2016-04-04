@@ -8,26 +8,27 @@
 #define COLS_NUM 4
 
 class Sprite {
- public:
-  Sprite(const char *resourceFile, GameWindow *window);
-  virtual ~Sprite();
+public:
+    Sprite(const char *resourceFile, GameWindow *window);
 
-  void render(int x, int y);
+    virtual ~Sprite();
 
-  void changeFrameRow(int i);
+    void render(int x, int y);
 
-  void changeFrameCol(int i);
+    void changeFrameRow(int i);
 
-  Rectangle *getBoundaries();
+    void changeFrameCol(int i);
 
- private:
-  const char *resourceFile;
-  GameWindow *window;
+    Rectangle *getBoundaries();
 
-  SDL_Texture *texture;
-  SDL_Rect sourceRectangle;
+private:
+    const char *resourceFile;
+    GameWindow *window;
 
-  void init();
+    SDL_Texture *texture;
+    SDL_Rect sourceRectangle;
+
+    void init();
 
 };
 
