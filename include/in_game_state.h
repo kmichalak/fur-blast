@@ -4,6 +4,9 @@
 #include "player.h"
 #include "game_state.h"
 #include "window.h"
+#include "block.h"
+
+#include <list>
 
 class InGameState : public GameState {
 public:
@@ -23,6 +26,7 @@ private:
     void handleInput();
 
     Player *player;
+    std::list<Block*> blocks;
     Rectangle *gameArea;
 };
 

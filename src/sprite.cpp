@@ -3,14 +3,14 @@
 #include "game_exception.h"
 #include "sprite.h"
 
-Sprite::Sprite(const char *resourceFile, SDL_Renderer *renderer)
+Sprite::Sprite(const char *resourceFile, SDL_Renderer *renderer, bool containsGameTiles)
         : resourceFile(resourceFile) {
 
-    init(renderer);
+    init(renderer, containsGameTiles);
 
 }
 
-void Sprite::init(SDL_Renderer *renderer) {
+void Sprite::init(SDL_Renderer *renderer, bool containsGameTiles) {
 
     this->texture = IMG_LoadTexture(renderer, resourceFile);
     if (!(this->texture)) {
@@ -22,8 +22,8 @@ void Sprite::init(SDL_Renderer *renderer) {
 
     this->sourceRectangle.x = 0;
     this->sourceRectangle.y = 0;
-    this->sourceRectangle.w = width / COLS_NUM;
-    this->sourceRectangle.h = height / ROWS_NUM;
+    this->sourceRectangle.w = containsGameTiles ? width / COLS_NUM : width;
+    this->sourceRectangle.h = containsGameTiles ? height / ROWS_NUM : height;
 }
 
 Sprite::~Sprite() {

@@ -9,7 +9,7 @@
 
 class Sprite {
 public:
-    Sprite(const char *resourceFile, SDL_Renderer *renderer);
+    Sprite(const char *resourceFile, SDL_Renderer *renderer, bool containsGameTiles);
 
     virtual ~Sprite();
 
@@ -29,7 +29,7 @@ private:
     SDL_Texture *texture;
     SDL_Rect sourceRectangle;
 
-    void init(SDL_Renderer *pRenderer);
+    void init(SDL_Renderer *pRenderer, bool containsGameTiles);
 
 };
 

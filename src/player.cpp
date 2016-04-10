@@ -2,7 +2,7 @@
 #include "player.h"
 
 Player::Player(SDL_Renderer *renderer) {
-    this->sprite = new Sprite("img/h1.png", renderer);
+    this->sprite = new Sprite("img/h1.png", renderer, true);
     this->setBoundaries(sprite->getBoundaries());
 }
 
