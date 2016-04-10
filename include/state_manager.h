@@ -2,17 +2,21 @@
 #define FUR_BLAST_STATE_MANAGER_H
 
 #include "window.h"
+#include "game_state.h"
 
 class StateManager {
 public:
-    StateManager(GameWindow *window);
+    StateManager(SDL_Renderer *renderer, Rectangle *boundaries);
 
     virtual ~StateManager();
 
-    void run();
+    void draw(SDL_Renderer *pRenderer);
 
+    void update();
 private:
-    GameWindow *window;
+    GameState *currentState;
+
+    Rectangle *gameBoundaries;
 };
 
 #endif //FUR_BLAST_STATE_MANAGER_H

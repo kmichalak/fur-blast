@@ -7,14 +7,12 @@ InGameState::InGameState() {
 
 InGameState::~InGameState() {
     delete this->player;
-    delete this->window;
     delete this->gameArea;
 }
 
-void InGameState::init(GameWindow *window) {
-    this->window = window;
-    this->player = new Player(window);
-    this->gameArea = window->getBoundaries();
+void InGameState::init(SDL_Renderer *renderer, Rectangle *gameArea) {
+    this->player = new Player(renderer);
+    this->gameArea = gameArea;
     this->player->setGameAreaBoundaries(this->gameArea);
 }
 
@@ -25,6 +23,13 @@ GameState::StateType InGameState::update() {
         return GameState::StateType::QUIT;
     }
     return GameState::StateType::IN_GAME;
+}
+
+
+void InGameState::draw(SDL_Renderer *renderer) {
+    Sprite *playerSprite = this->player->getSprite();
+    Rectangle *destinationRect = this->player->getBoundaries();
+    drawSprite(renderer, playerSprite, destinationRect);
 }
 
 void InGameState::handleInput() {
@@ -39,11 +44,9 @@ void InGameState::handleInput() {
     }
     if (input.isKeyDown(SDL_SCANCODE_F)
         || input.isKeyPressed(SDL_SCANCODE_F)) {
-        this->window->toggleFullscreen();
+//        this->window->toggleFullscreen();
     }
 
-    if (this->player) {
-        this->player->update();
-    }
+    this->player->update();
 
 }

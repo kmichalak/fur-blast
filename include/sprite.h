@@ -1,7 +1,7 @@
 #ifndef FUR_BLAST_SPRITE_H
 #define FUR_BLAST_SPRITE_H
 
-#include "window.h"
+#include "SDL.h"
 #include "rectangle.h"
 
 #define ROWS_NUM 4
@@ -9,11 +9,9 @@
 
 class Sprite {
 public:
-    Sprite(const char *resourceFile, GameWindow *window);
+    Sprite(const char *resourceFile, SDL_Renderer *renderer);
 
     virtual ~Sprite();
-
-    void render(int x, int y);
 
     void changeFrameRow(int i);
 
@@ -21,14 +19,17 @@ public:
 
     Rectangle *getBoundaries();
 
+    SDL_Texture *getTexture();
+
+    SDL_Rect getSourceRect();
+
 private:
     const char *resourceFile;
-    GameWindow *window;
 
     SDL_Texture *texture;
     SDL_Rect sourceRectangle;
 
-    void init();
+    void init(SDL_Renderer *pRenderer);
 
 };
 

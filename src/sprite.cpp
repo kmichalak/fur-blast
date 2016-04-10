@@ -3,16 +3,16 @@
 #include "game_exception.h"
 #include "sprite.h"
 
-Sprite::Sprite(const char *resourceFile, GameWindow *window)
-        : resourceFile(resourceFile),
-          window(window) {
+Sprite::Sprite(const char *resourceFile, SDL_Renderer *renderer)
+        : resourceFile(resourceFile) {
 
-    init();
+    init(renderer);
 
 }
 
-void Sprite::init() {
-    this->texture = this->window->loadImage(this->resourceFile);
+void Sprite::init(SDL_Renderer *renderer) {
+
+    this->texture = IMG_LoadTexture(renderer, resourceFile);
     if (!(this->texture)) {
         throw SDLException(SDL_GetError());
     }
@@ -30,15 +30,6 @@ Sprite::~Sprite() {
     SDL_DestroyTexture(this->texture);
 }
 
-void Sprite::render(int x, int y) {
-    SDL_Rect source = this->sourceRectangle;
-    SDL_Rect destination = {
-            x, y,
-            this->sourceRectangle.h, this->sourceRectangle.w
-    };
-    window->renderImage(this->texture, &source, &destination);
-}
-
 void Sprite::changeFrameRow(int row) {
     this->sourceRectangle.y = sourceRectangle.h * row;
 }
@@ -52,4 +43,12 @@ Rectangle *Sprite::getBoundaries() {
             this->sourceRectangle.x, this->sourceRectangle.y,
             this->sourceRectangle.w, this->sourceRectangle.h
     );
+}
+
+SDL_Texture *Sprite::getTexture() {
+    return this->texture;
+}
+
+SDL_Rect Sprite::getSourceRect() {
+    return this->sourceRectangle;
 }

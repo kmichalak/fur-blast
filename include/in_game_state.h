@@ -11,9 +11,11 @@ public:
 
     virtual ~InGameState();
 
-    void init(GameWindow *window);
+    void init(SDL_Renderer *renderer, Rectangle *gameArea);
 
     virtual StateType update();
+
+    virtual void draw(SDL_Renderer *renderer);
 
 private:
     bool shouldQuit;
@@ -21,7 +23,6 @@ private:
     void handleInput();
 
     Player *player;
-    GameWindow *window;
     Rectangle *gameArea;
 };
 
