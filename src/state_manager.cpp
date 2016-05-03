@@ -12,8 +12,8 @@ StateManager::~StateManager() {
     delete this->currentState;
 }
 
-void StateManager::update() {
-    this->currentState->update();
+GameState::StateType StateManager::update() {
+    return this->currentState->update();
 }
 
 void StateManager::draw(SDL_Renderer *renderer) {

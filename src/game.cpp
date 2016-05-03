@@ -1,4 +1,5 @@
 #include <game_exception.h>
+#include <input.h>
 
 #include "game.h"
 
@@ -34,14 +35,12 @@ Game::~Game() {
 
 void Game::mainLoop() {
 
-//    this->stateManager->run();
+    GameState::StateType currentState = GameState::StateType::INITIAL;
 
-    while (this->event->type != SDL_QUIT) {
+    while (currentState != GameState::StateType::QUIT) {
         Uint32 frameTime = SDL_GetTicks();
 
-        SDL_PollEvent(this->event);
-
-        this->stateManager->update();
+        currentState = this->stateManager->update();
         // handle input
         // update game state
 

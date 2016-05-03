@@ -1,7 +1,9 @@
 #include <input.h>
+#include <list>
 #include "player.h"
 
-Player::Player(SDL_Renderer *renderer) {
+Player::Player(SDL_Renderer *renderer)
+        : FallingObject(0, 0, 0, 0) {
     this->sprite = new Sprite("img/h1.png", renderer, true);
     this->setBoundaries(sprite->getBoundaries());
 }
@@ -10,7 +12,7 @@ Player::~Player() {
     delete this->sprite;
 }
 
-void Player::update() {
+void Player::update(std::list<CollidingObject *> collidingObjects) {
     InputManager &manager = InputManager::getInstance();
 
     if (manager.isKeyPressed(SDL_SCANCODE_LEFT)) {
@@ -47,6 +49,8 @@ void Player::update() {
         this->sprite->changeFrameCol(3);
     }
 
+    FallingObject::update(10, collidingObjects);
+
 }
 
 void Player::updateFrames(int frameRow) {
@@ -55,10 +59,6 @@ void Player::updateFrames(int frameRow) {
     this->sprite->changeFrameRow(frameRow);
 }
 
-Sprite * Player::getSprite() {
+Sprite *Player::getSprite() {
     return this->sprite;
-}
-
-Rectangle * Player::getBoundaries() {
-    return this->boundaries;
 }

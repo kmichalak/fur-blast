@@ -26,7 +26,7 @@ private:
     void handleInput();
 
     Player *player;
-    std::list<Block*> blocks;
+    std::list<CollidingObject*> blocks;
     Rectangle *gameArea;
 };
 

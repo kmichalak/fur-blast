@@ -7,6 +7,7 @@
 class GameState {
 public:
     enum StateType {
+        INITIAL,
         QUIT,
         IN_GAME
     };

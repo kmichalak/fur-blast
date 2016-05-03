@@ -1,16 +1,19 @@
 #include <iostream>
 #include "falling_object.h"
 
-FallingObject::FallingObject() {
+FallingObject::FallingObject(int x, int y, int w, int h)
+        : CollidingObject(x, y, w, h) {
+    this->isInAir = true;
 }
 
 FallingObject::~FallingObject() {
 
 }
 
-void FallingObject::update(float dt) {
+void FallingObject::update(float dt, std::list<CollidingObject *> collidingObjects) {
     float velocity = float(GRAVITY_ACCELERATION) * dt;
     float upVelocity = 0;
+    this->isInAir = true;
 
     if (thrownUp) {
         upVelocity = float(
@@ -26,11 +29,22 @@ void FallingObject::update(float dt) {
         this->lastTimeDelta = 0;
     }
 
-    if (this->hitBottomEnd()) {
+    bool standsOnOtherObject = false;
+    for (CollidingObject * object : collidingObjects) {
+        if (this->collidesBottom(object)) {
+            standsOnOtherObject = true;
+            break;
+        }
+    }
+
+    if (this->hitBottomEnd() || standsOnOtherObject) {
         this->isInAir = false;
     }
-    this->moveUp(upVelocity);
-    this->moveDown(velocity);
+
+    if (this->isInAir) {
+        this->moveUp(upVelocity);
+        this->moveDown(velocity);
+    }
 }
 
 void FallingObject::throwUp() {

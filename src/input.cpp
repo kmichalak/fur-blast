@@ -8,7 +8,6 @@ InputManager &InputManager::getInstance() {
 
 void InputManager::update() {
 
-    shouldQuit = false;
     for (int i = 0; i < SDL_NUM_SCANCODES; i++) {
         this->keyDown[i] = false;
         this->keyUp[i] = false;
@@ -16,7 +15,6 @@ void InputManager::update() {
 
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
-
         this->keyboard = SDL_GetKeyboardState(nullptr);
 
         switch (event.type) {

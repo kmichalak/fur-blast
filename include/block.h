@@ -3,16 +3,15 @@
 
 #include <SDL.h>
 #include "sprite.h"
+#include "colliding_object.h"
 
-class Block {
+class Block : public CollidingObject {
 public:
     Block(int x, int y, SDL_Renderer *renderer);
     virtual ~Block();
     Sprite *getSprite();
-    Rectangle *getBoundaries();
 private:
     Sprite *sprite;
-    Rectangle *boundaries;
 };
 
 #endif //FUR_BLAST_BLOCK_H

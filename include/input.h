@@ -19,7 +19,9 @@ public:
 
 private:
     // Hide possibility of object instantiation
-    InputManager() : keyboard(nullptr) { };
+    InputManager() : keyboard(nullptr) {
+        shouldQuit = false;
+    };
 
     // Delete methods (new C++11 - http://www.stroustrup.com/C++11FAQ.html#default)
     // and disallow copying object.

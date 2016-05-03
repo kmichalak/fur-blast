@@ -14,8 +14,20 @@ void InGameState::init(SDL_Renderer *renderer, Rectangle *gameArea) {
     this->gameArea = gameArea;
 
     // initialize game area
-    for (int blockIndex =0; blockIndex < 21 * 15; blockIndex +=21) {
-        this->blocks.push_back(new Block(blockIndex, 100, renderer));
+    for (int blockIndex = 0; blockIndex < 21 * 15; blockIndex += 21) {
+        this->blocks.push_back((CollidingObject *) new Block(blockIndex, 100, renderer));
+    }
+
+    for (int blockIndex = 210; blockIndex < 21 * 15; blockIndex += 21) {
+        this->blocks.push_back((CollidingObject *) new Block(blockIndex, 230, renderer));
+    }
+
+    for (int blockIndex = 105; blockIndex < 21 * 15; blockIndex += 21) {
+        this->blocks.push_back((CollidingObject *) new Block(blockIndex, 300, renderer));
+    }
+
+    for (int blockIndex = 210; blockIndex < 21 * 20; blockIndex += 21) {
+        this->blocks.push_back((CollidingObject *) new Block(blockIndex, 300, renderer));
     }
 
     // initialize player
@@ -25,6 +37,9 @@ void InGameState::init(SDL_Renderer *renderer, Rectangle *gameArea) {
 
 GameState::StateType InGameState::update() {
     handleInput();
+
+    this->player->update(this->blocks);
+
 
     if (this->shouldQuit) {
         return GameState::StateType::QUIT;
@@ -38,9 +53,8 @@ void InGameState::draw(SDL_Renderer *renderer) {
     Rectangle *destinationRect = this->player->getBoundaries();
     drawSprite(renderer, playerSprite, destinationRect);
     int blockIndex = 0;
-    for (auto block : blocks) {
-//        Rectangle *destination = new Rectangle(blockIndex * 21, 100, 21, 21);
-
+    for (CollidingObject *blockObject : blocks) {
+        Block *block = (Block *) blockObject;
         drawSprite(renderer, block->getSprite(), block->getBoundaries());
         blockIndex++;
     }
@@ -61,7 +75,4 @@ void InGameState::handleInput() {
         || input.isKeyPressed(SDL_SCANCODE_F)) {
 //        this->window->toggleFullscreen();
     }
-
-    this->player->update();
-
 }

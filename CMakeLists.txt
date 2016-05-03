@@ -42,11 +42,4 @@ add_executable(fur_blast ${FUR_BLAST_HEADERS} ${FUR_BLAST_SOURCES} main.cpp)
 #
 target_link_libraries(fur_blast ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY})
 
-#
-# Build tests when cmake was run with -Dtests=BOOL:ON flag
-#
-if (tests)
-
-    add_subdirectory(test)
-
-endif()
+add_subdirectory(test)

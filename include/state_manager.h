@@ -12,7 +12,7 @@ public:
 
     void draw(SDL_Renderer *pRenderer);
 
-    void update();
+    GameState::StateType update();
 private:
     GameState *currentState;
 

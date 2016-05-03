@@ -1,6 +1,7 @@
 #include "block.h"
 
-Block::Block(int x, int y, SDL_Renderer *renderer) {
+Block::Block(int x, int y, SDL_Renderer *renderer)
+        : CollidingObject(x, y, 21, 21) {
     this->boundaries = new Rectangle(x, y, 21, 21);
     this->sprite = new Sprite("img/ground.png", renderer, false);
 }
@@ -11,8 +12,4 @@ Block::~Block() {
 
 Sprite *Block::getSprite() {
     return this->sprite;
-}
-
-Rectangle *Block::getBoundaries() {
-    return this->boundaries;
 }

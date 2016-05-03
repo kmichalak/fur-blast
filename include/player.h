@@ -1,7 +1,8 @@
 #ifndef FUR_BLAST_PLAYER_H
 #define FUR_BLAST_PLAYER_H
 
-#include "SDL.h"
+#include <list>
+#include <SDL.h>
 
 #include "sprite.h"
 #include "window.h"
@@ -17,11 +18,9 @@ public:
 
     virtual ~Player();
 
-    void update();
+    void update(std::list<CollidingObject *> collidingObjects);
 
     Sprite * getSprite();
-
-    Rectangle * getBoundaries();
 
 private:
     Sprite *sprite;
