@@ -14,7 +14,7 @@ void InGameState::init(SDL_Renderer *renderer, Rectangle *gameArea) {
     this->gameArea = gameArea;
 
     // initialize game area
-    for (int blockIndex = 0; blockIndex < 21 * 15; blockIndex += 21) {
+    for (int blockIndex = 21*5; blockIndex < 21 * 15; blockIndex += 21) {
         this->blocks.push_back((CollidingObject *) new Block(blockIndex, 100, renderer));
     }
 

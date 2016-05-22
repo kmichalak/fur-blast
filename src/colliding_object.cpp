@@ -10,20 +10,20 @@ CollidingObject::~CollidingObject() {
 }
 
 
-bool CollidingObject::collidesRight(CollidingObject *object) {
+bool CollidingObject::collidesRight(Rectangle *collidingObjectBoundaries) {
     int rightEdgePosition = int(this->getBoundaries()->x + this->getBoundaries()->width);
-    return object->getBoundaries()->x <= rightEdgePosition
-           && object->getBoundaries()->x + object->getBoundaries()->width > this->getBoundaries()->x
-           && this->getBoundaries()->y + this->getBoundaries()->height > object->getBoundaries()->y
-           && this->getBoundaries()->y < object->getBoundaries()->y + object->getBoundaries()->height;
+    return collidingObjectBoundaries->x <= rightEdgePosition
+           && collidingObjectBoundaries->x + collidingObjectBoundaries->width > this->getBoundaries()->x
+           && this->getBoundaries()->y + this->getBoundaries()->height > collidingObjectBoundaries->y
+           && this->getBoundaries()->y < collidingObjectBoundaries->y + collidingObjectBoundaries->height;
 }
 
-bool CollidingObject::collidesLeft(CollidingObject *object) {
-    int objectRightEdgePosition = int(object->getBoundaries()->x + object->getBoundaries()->width);
+bool CollidingObject::collidesLeft(Rectangle *collidingObjectBoundaries) {
+    int objectRightEdgePosition = int(collidingObjectBoundaries->x + collidingObjectBoundaries->width);
     return objectRightEdgePosition >= this->getBoundaries()->x
-           && object->getBoundaries()->x < this->getBoundaries()->x + this->getBoundaries()->width
-           && this->getBoundaries()->y + this->getBoundaries()->height > object->getBoundaries()->y
-           && this->getBoundaries()->y < object->getBoundaries()->y + object->getBoundaries()->height;
+           && collidingObjectBoundaries->x <= this->getBoundaries()->x + this->getBoundaries()->width
+           && this->getBoundaries()->y + this->getBoundaries()->height > collidingObjectBoundaries->y
+           && this->getBoundaries()->y < collidingObjectBoundaries->y + collidingObjectBoundaries->height;
 }
 
 bool CollidingObject::collidesTop(Rectangle *collidingObjectBoundaries) {
