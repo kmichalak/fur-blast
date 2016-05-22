@@ -10,11 +10,12 @@ public:
     virtual ~CollidingObject();
     virtual bool collidesRight(CollidingObject *object);
     virtual bool collidesLeft(CollidingObject *object);
-    virtual bool collidesTop(CollidingObject *object);
-    virtual bool collidesBottom(CollidingObject *object);
+    virtual bool collidesTop(Rectangle *collidingObjectBoundaries);
+    virtual bool collidesBottom(Rectangle *collidingObjectBoundaries);
     Rectangle *getBoundaries();
 
-    bool inHorizontalBoundariesOf(CollidingObject *pObject);
+private:
+    bool inHorizontalBoundariesOf(Rectangle *collidingObjectBoundaries);
 };
 
 #endif //FUR_BLAST_COLLIDING_OBJECT_H

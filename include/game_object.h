@@ -15,13 +15,13 @@ public:
 
     bool isInGameAreaBoundaries();
 
-    virtual void moveLeft(float moveSpeed);
-
-    virtual void moveRight(float moveSpeed);
-
-    virtual void moveUp(float moveSpeed);
-
-    virtual void moveDown(float moveSpeed);
+//    virtual void moveLeft(float moveSpeed);
+//
+//    virtual void moveRight(float moveSpeed);
+//
+//    virtual void moveUp(float moveSpeed);
+//
+//    virtual void moveDown(float moveSpeed);
 
 protected:
     virtual bool hitRightEnd();

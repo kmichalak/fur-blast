@@ -10,7 +10,7 @@
 
 #define RUN_LEFT_FRAMES 0
 #define RUN_RIGHT_FRAMES 1
-#define MOVE_SPEED 1.3
+#define MOVE_SPEED 2.0
 
 class Player : public FallingObject {
 public:
@@ -21,6 +21,11 @@ public:
     void update(std::list<CollidingObject *> collidingObjects);
 
     Sprite * getSprite();
+
+
+    virtual void moveLeft(float moveSpeed);
+
+    virtual void moveRight(float moveSpeed);
 
 private:
     Sprite *sprite;

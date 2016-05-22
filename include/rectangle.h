@@ -5,6 +5,7 @@
 
 class Rectangle {
 public:
+    // TODO: Why we have ints and floats here?
     Rectangle(int x, int y, int width, int height);
 
     virtual ~Rectangle();

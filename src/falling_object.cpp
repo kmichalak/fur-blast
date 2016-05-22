@@ -11,8 +11,12 @@ FallingObject::~FallingObject() {
 }
 
 void FallingObject::update(float dt, std::list<CollidingObject *> collidingObjects) {
+    // TODO: It's not used as velocity but the distance that will be passed by the object
+    // during falling. This should be renamed/reimplemented.
     float velocity = float(GRAVITY_ACCELERATION) * dt;
+    // TODO: This is not velocity too.
     float upVelocity = 0;
+
     this->isInAir = true;
 
     if (thrownUp) {
@@ -30,8 +34,23 @@ void FallingObject::update(float dt, std::list<CollidingObject *> collidingObjec
     }
 
     bool standsOnOtherObject = false;
-    for (CollidingObject * object : collidingObjects) {
-        if (this->collidesBottom(object)) {
+    float moveAdjustment = 0;
+
+    for (CollidingObject *object : collidingObjects) {
+        // If object will collide with some other object after position change
+        // we should adjust the distance to make sure that object will not "stick"
+        // in the other object.
+        Rectangle *moveBoundariesProjection = new Rectangle(
+                int(this->boundaries->x),
+                int(this->boundaries->y + velocity),
+                int(this->boundaries->width),
+                int(this->boundaries->height)
+        );
+        if (object->collidesTop(moveBoundariesProjection)) {
+            moveAdjustment = moveBoundariesProjection->y + moveBoundariesProjection->height - object->getBoundaries()->y;
+        }
+
+        if (this->collidesBottom(object->getBoundaries())) {
             standsOnOtherObject = true;
             break;
         }
@@ -43,9 +62,37 @@ void FallingObject::update(float dt, std::list<CollidingObject *> collidingObjec
 
     if (this->isInAir) {
         this->moveUp(upVelocity);
-        this->moveDown(velocity);
+        this->moveDown(velocity - moveAdjustment);
+
+//        for (CollidingObject *object : collidingObjects) {
+//            if (this->collidesBottom(object->getBoundaries())) {
+//                float bottomEndPosition = this->boundaries->y + this->boundaries->height;
+//                float verticalPositionAdjustment = bottomEndPosition - object->getBoundaries()->y;
+//                this->boundaries->y = this->boundaries->y - verticalPositionAdjustment;
+//                break;
+//            }
+//        }
+
+
+    } else {
+        if (this->hitBottomEnd()) {
+            this->boundaries->y = 0;
+        }
     }
 }
+
+void FallingObject::moveDown(float moveSpeed) {
+    if (!this->hitBottomEnd()) {
+        this->boundaries->y += moveSpeed;
+    }
+}
+
+void FallingObject::moveUp(float moveSpeed) {
+    if (!this->hitTopEnd()) {
+        this->boundaries->y -= moveSpeed;
+    }
+}
+
 
 void FallingObject::throwUp() {
     if (!isInAir) { // just cannot jump when there is no ground under the feet

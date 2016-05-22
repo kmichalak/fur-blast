@@ -3,7 +3,7 @@
 #include "player.h"
 
 Player::Player(SDL_Renderer *renderer)
-        : FallingObject(0, 0, 0, 0) {
+        : FallingObject(200, 0, 0, 0) {
     this->sprite = new Sprite("img/h1.png", renderer, true);
     this->setBoundaries(sprite->getBoundaries());
 }
@@ -14,14 +14,53 @@ Player::~Player() {
 
 void Player::update(std::list<CollidingObject *> collidingObjects) {
     InputManager &manager = InputManager::getInstance();
+    CollidingObject *collidingObject;
 
     if (manager.isKeyPressed(SDL_SCANCODE_LEFT)) {
+        bool collidesLeft = false;
+
+        for (CollidingObject *object : collidingObjects) {
+
+            if (this->collidesLeft(object)) {
+                collidingObject = object;
+                collidesLeft = true;
+                break;
+            }
+        }
+
+        if (!collidesLeft) {
+            this->moveLeft(MOVE_SPEED);
+        }
+        else {
+            do {
+                moveRight(1);
+            } while (this->collidesLeft(collidingObject));
+//            float d = this->getBoundaries()->x - collidingObject->getBoundaries()->x;
+//            if (d > 0) {
+//                this->moveRight(getBoundaries()->width - d);
+//            }
+        }
         this->updateFrames(RUN_LEFT_FRAMES);
-        this->moveLeft(MOVE_SPEED);
     }
     if (manager.isKeyPressed(SDL_SCANCODE_RIGHT)) {
+        bool collidesRight = false;
+        for (CollidingObject *object : collidingObjects) {
+            if (this->collidesRight(object)) {
+                collidingObject = object;
+                collidesRight = true;
+                break;
+            }
+        }
+        if (!collidesRight) {
+            this->moveRight(MOVE_SPEED);
+        } else {
+            while(this->collidesRight(collidingObject)) {
+                this->moveLeft(1);
+            }
+            float d = collidingObject->getBoundaries()->x - this->getBoundaries()->x;
+            this->moveLeft(getBoundaries()->width - d);
+        }
         this->updateFrames(RUN_RIGHT_FRAMES);
-        this->moveRight(MOVE_SPEED);
     }
 
 
@@ -61,4 +100,16 @@ void Player::updateFrames(int frameRow) {
 
 Sprite *Player::getSprite() {
     return this->sprite;
+}
+
+void Player::moveRight(float moveSpeed) {
+    if (!this->hitRightEnd()) {
+        this->boundaries->x += moveSpeed;
+    }
+}
+
+void Player::moveLeft(float moveSpeed) {
+    if (!this->hitLeftEnd()) {
+        this->boundaries->x -= moveSpeed;
+    }
 }
