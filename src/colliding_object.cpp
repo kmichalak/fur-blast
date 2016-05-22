@@ -11,32 +11,31 @@ CollidingObject::~CollidingObject() {
 
 
 bool CollidingObject::collidesRight(Rectangle *collidingObjectBoundaries) {
-    int rightEdgePosition = int(this->getBoundaries()->x + this->getBoundaries()->width);
+    int rightEdgePosition = this->getRight();
     return collidingObjectBoundaries->x <= rightEdgePosition
            && collidingObjectBoundaries->x + collidingObjectBoundaries->width > this->getBoundaries()->x
-           && this->getBoundaries()->y + this->getBoundaries()->height > collidingObjectBoundaries->y
-           && this->getBoundaries()->y < collidingObjectBoundaries->y + collidingObjectBoundaries->height;
+           && this->getBottom() > collidingObjectBoundaries->y
+           && this->getTop() < collidingObjectBoundaries->y + collidingObjectBoundaries->height;
 }
 
 bool CollidingObject::collidesLeft(Rectangle *collidingObjectBoundaries) {
-    int objectRightEdgePosition = int(collidingObjectBoundaries->x + collidingObjectBoundaries->width);
-    return objectRightEdgePosition >= this->getBoundaries()->x
-           && collidingObjectBoundaries->x <= this->getBoundaries()->x + this->getBoundaries()->width
-           && this->getBoundaries()->y + this->getBoundaries()->height > collidingObjectBoundaries->y
-           && this->getBoundaries()->y < collidingObjectBoundaries->y + collidingObjectBoundaries->height;
+    int objectRightEdgePosition = collidingObjectBoundaries->x + collidingObjectBoundaries->width;
+    return objectRightEdgePosition >= this->getLeft()
+           && collidingObjectBoundaries->x <= this->getRight()
+           && this->getBottom() > collidingObjectBoundaries->y
+           && this->getTop() < collidingObjectBoundaries->y + collidingObjectBoundaries->height;
 }
 
 bool CollidingObject::collidesTop(Rectangle *collidingObjectBoundaries) {
-    float objectBottomEdgePosition = int(collidingObjectBoundaries->y + collidingObjectBoundaries->height);
-    return this->getBoundaries()->y <= objectBottomEdgePosition
-           && this->getBoundaries()->y + this->getBoundaries()->height > objectBottomEdgePosition
+    float objectBottomEdgePosition = collidingObjectBoundaries->y + collidingObjectBoundaries->height;
+    return this->getTop() <= objectBottomEdgePosition
+           && this->getBottom() > objectBottomEdgePosition
            && inHorizontalBoundariesOf(collidingObjectBoundaries);
 }
 
 bool CollidingObject::collidesBottom(Rectangle *collidingObjectBoundaries) {
-    int bottomEdgePosition = int(this->getBoundaries()->y + this->getBoundaries()->height);
-    return bottomEdgePosition >= collidingObjectBoundaries->y
-           && this->getBoundaries()->y < collidingObjectBoundaries->y
+    return this->getBottom() >= collidingObjectBoundaries->y
+           && this->getTop() <= collidingObjectBoundaries->y
            && inHorizontalBoundariesOf(collidingObjectBoundaries);
 }
 
@@ -48,8 +47,24 @@ bool CollidingObject::inHorizontalBoundariesOf(Rectangle *collidingObjectBoundar
     float collidingObjectRightEdgePosition = collidingObjectBoundaries->x + collidingObjectBoundaries->width;
     float itsRightEdgePosition = this->getBoundaries()->x + this->getBoundaries()->width;
 
-    return (this->getBoundaries()->x >= collidingObjectBoundaries->x
-            && this->getBoundaries()->x <= collidingObjectRightEdgePosition)
+    return (this->getLeft() >= collidingObjectBoundaries->x
+            && this->getLeft() <= collidingObjectRightEdgePosition)
            || (itsRightEdgePosition >= collidingObjectBoundaries->x
                && itsRightEdgePosition <= collidingObjectRightEdgePosition);
+}
+
+int CollidingObject::getTop() {
+    return this->boundaries->y;
+}
+
+int CollidingObject::getRight() {
+    return this->boundaries->x + this->boundaries->width;
+}
+
+int CollidingObject::getBottom() {
+    return this->boundaries->y + this->boundaries->height;
+}
+
+int CollidingObject::getLeft() {
+    return this->boundaries->x;
 }

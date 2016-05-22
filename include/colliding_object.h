@@ -18,6 +18,11 @@ public:
     virtual bool collidesBottom(Rectangle *collidingObjectBoundaries);
     Rectangle *getBoundaries();
 
+    int getTop();
+    int getRight();
+    int getBottom();
+    int getLeft();
+
 private:
     bool inHorizontalBoundariesOf(Rectangle *collidingObjectBoundaries);
 };

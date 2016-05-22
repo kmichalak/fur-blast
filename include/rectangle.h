@@ -10,10 +10,10 @@ public:
 
     virtual ~Rectangle();
 
-    float x;
-    float y;
-    float width;
-    float height;
+    int x;
+    int y;
+    int width;
+    int height;
 };
 
 #endif //FUR_BLAST_RECTANGLE_H
