@@ -1,8 +1,8 @@
-#include "test_colliding_object_bottom_collision.h"
+#include "test_colliding_object_top_collision.h"
 
-void CollidingObjectBottomCollisionTest::SetUp() { }
+void CollidingObjectTopCollisionTest::SetUp() { }
 
-void CollidingObjectBottomCollisionTest::TearDown() { }
+void CollidingObjectTopCollisionTest::TearDown() { }
 
 // ....................................
 // .........ttt........................
@@ -11,7 +11,7 @@ void CollidingObjectBottomCollisionTest::TearDown() { }
 // ............ccc.....................
 // ....................................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToLeftUpperCornerOfCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectIsCloseToLeftUpperCornerOfCollidingObject) {
 
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
@@ -24,7 +24,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToLeftUpperCorn
 
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_FALSE(isColliding);
@@ -38,7 +38,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToLeftUpperCorn
 // ............ccc.....................
 // ....................................
 // ....................................
-TEST(CollidingObject, BottomCollisionDetectedWhenObjectStandsOnCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectStandsOnCollidingObject) {
 
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
@@ -51,10 +51,10 @@ TEST(CollidingObject, BottomCollisionDetectedWhenObjectStandsOnCollidingObject) 
 
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
-    EXPECT_TRUE(isColliding);
+    EXPECT_FALSE(isColliding);
 
 }
 
@@ -65,7 +65,7 @@ TEST(CollidingObject, BottomCollisionDetectedWhenObjectStandsOnCollidingObject) 
 // ............ccc.....................
 // ....................................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToRightUpperCornerOfCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectIsCloseToRightUpperCornerOfCollidingObject) {
 
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
@@ -78,7 +78,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToRightUpperCor
 
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_FALSE(isColliding);
@@ -92,7 +92,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToRightUpperCor
 // .........tttccc.....................
 // ....................................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToTheLeftOfCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectIsCloseToTheLeftOfCollidingObject) {
 
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
@@ -105,7 +105,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToTheLeftOfColl
 
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_FALSE(isColliding);
@@ -118,7 +118,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToTheLeftOfColl
 // ............ctc.....................
 // ....................................
 // ....................................
-TEST(CollidingObject, BottomCollisionDetectedWhenObjectLaysOnTheCollidingObject) {
+TEST(CollidingObject, TopCollisionDetectedWhenObjectLaysOnTheCollidingObject) {
 
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
@@ -131,7 +131,7 @@ TEST(CollidingObject, BottomCollisionDetectedWhenObjectLaysOnTheCollidingObject)
 
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_TRUE(isColliding);
@@ -145,7 +145,7 @@ TEST(CollidingObject, BottomCollisionDetectedWhenObjectLaysOnTheCollidingObject)
 // .........cccttt.....................
 // ....................................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToTheRightOfCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectIsCloseToTheRightOfCollidingObject) {
 
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
@@ -158,7 +158,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToTheRightOfCol
 
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_FALSE(isColliding);
@@ -171,7 +171,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToTheRightOfCol
 // .........ttt........................
 // .........ttt........................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToLeftLowerCornerOfCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectIsCloseToLeftLowerCornerOfCollidingObject) {
 
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
@@ -184,7 +184,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToLeftLowerCorn
 
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_FALSE(isColliding);
@@ -198,7 +198,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToLeftLowerCorn
 // ............ttt.....................
 // ............ttt.....................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenCollidingObjectStandsOnTestedObject) {
+TEST(CollidingObject, TopCollisionDetectedWhenCollidingObjectStandsOnTestedObject) {
 
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
@@ -211,10 +211,10 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenCollidingObjectStandsOnTeste
 
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
-    EXPECT_FALSE(isColliding);
+    EXPECT_TRUE(isColliding);
 
 }
 
@@ -225,7 +225,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenCollidingObjectStandsOnTeste
 // ...............ttt..................
 // ...............ttt..................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToRightLowerCornerOfCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectIsCloseToRightLowerCornerOfCollidingObject) {
 
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
@@ -238,7 +238,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToRightLowerCor
 
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_FALSE(isColliding);
@@ -255,7 +255,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsCloseToRightLowerCor
 // ............ccc.....................
 // ....................................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsOverAndToTheLeftOfOCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectIsOverAndToTheLeftOfOCollidingObject) {
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
     CollidingObject *objectUnderTest = new CollidingObject(
@@ -266,7 +266,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsOverAndToTheLeftOfOC
     );
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_FALSE(isColliding);
@@ -281,7 +281,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsOverAndToTheLeftOfOC
 // ............ccc.....................
 // ....................................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsDirectlyOverCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectIsDirectlyOverCollidingObject) {
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
     CollidingObject *objectUnderTest = new CollidingObject(
@@ -292,7 +292,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsDirectlyOverCollidin
     );
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_FALSE(isColliding);
@@ -307,7 +307,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsDirectlyOverCollidin
 // ............ccc.....................
 // ....................................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsOverAndToTheRightOfOCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectIsOverAndToTheRightOfOCollidingObject) {
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
     CollidingObject *objectUnderTest = new CollidingObject(
@@ -318,7 +318,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsOverAndToTheRightOfO
     );
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_FALSE(isColliding);
@@ -333,7 +333,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsOverAndToTheRightOfO
 // ............ttt..ccc................
 // ....................................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsToTheLeftOfOCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectIsToTheLeftOfOCollidingObject) {
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
     CollidingObject *objectUnderTest = new CollidingObject(
@@ -344,7 +344,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsToTheLeftOfOCollidin
     );
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_FALSE(isColliding);
@@ -359,7 +359,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsToTheLeftOfOCollidin
 // ............ccc..ttt................
 // ....................................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsToTheRightOfOCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectIsToTheRightOfOCollidingObject) {
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
     CollidingObject *objectUnderTest = new CollidingObject(
@@ -370,7 +370,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsToTheRightOfOCollidi
     );
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_FALSE(isColliding);
@@ -386,7 +386,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsToTheRightOfOCollidi
 // .......ttt..........................
 // .......ttt..........................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsUnderAndToTheLeftOfOCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectIsUnderAndToTheLeftOfOCollidingObject) {
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
     CollidingObject *objectUnderTest = new CollidingObject(
@@ -397,7 +397,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsUnderAndToTheLeftOfO
     );
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_FALSE(isColliding);
@@ -412,7 +412,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsUnderAndToTheLeftOfO
 // ............ttt.....................
 // ............ttt.....................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsDirectlyUnderTheCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectIsDirectlyUnderTheCollidingObject) {
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
     CollidingObject *objectUnderTest = new CollidingObject(
@@ -423,7 +423,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsDirectlyUnderTheColl
     );
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_FALSE(isColliding);
@@ -438,7 +438,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsDirectlyUnderTheColl
 // .................ttt................
 // .................ttt................
 // ....................................
-TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsUnderAndToTheRightOfOCollidingObject) {
+TEST(CollidingObject, TopCollisionNotDetectedWhenObjectIsUnderAndToTheRightOfOCollidingObject) {
     // given
     CollidingObject *collidingObject = new CollidingObject(100, 100, 10, 10);
     CollidingObject *objectUnderTest = new CollidingObject(
@@ -449,7 +449,7 @@ TEST(CollidingObject, BottomCollisionNotDetectedWhenObjectIsUnderAndToTheRightOf
     );
 
     // when
-    bool isColliding = objectUnderTest->collidesBottom(collidingObject->getBoundaries());
+    bool isColliding = objectUnderTest->collidesTop(collidingObject->getBoundaries());
 
     // then
     EXPECT_FALSE(isColliding);

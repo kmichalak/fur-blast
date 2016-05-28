@@ -1,14 +1,14 @@
-#ifndef FUR_BLAST_TEST_COLLIDING_OBJECT_H
-#define FUR_BLAST_TEST_COLLIDING_OBJECT_H
+#ifndef FUR_BLAST_TEST_COLLIDING_OBJECT_BOTTOM_COLLISION_H
+#define FUR_BLAST_TEST_COLLIDING_OBJECT_BOTTOM_COLLISION_H
 
 #include <gtest/gtest.h>
 #include "colliding_object.h"
 
-class CollidingObjectTest : public testing::Test {
+class CollidingObjectBottomCollisionTest : public testing::Test {
 protected:
     void SetUp();
     void TearDown();
 
 };
 
-#endif //FUR_BLAST_TEST_COLLIDING_OBJECT_H
+#endif //FUR_BLAST_TEST_COLLIDING_OBJECT_BOTTOM_COLLISION_H

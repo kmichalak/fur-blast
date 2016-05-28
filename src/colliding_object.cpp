@@ -29,7 +29,7 @@ bool CollidingObject::collidesLeft(Rectangle *collidingObjectBoundaries) {
 bool CollidingObject::collidesTop(Rectangle *collidingObjectBoundaries) {
     float objectBottomEdgePosition = collidingObjectBoundaries->y + collidingObjectBoundaries->height;
     return this->getTop() <= objectBottomEdgePosition
-           && this->getBottom() > objectBottomEdgePosition
+           && this->getBottom() >= objectBottomEdgePosition
            && inHorizontalBoundariesOf(collidingObjectBoundaries);
 }
 
