@@ -41,13 +41,16 @@ void FallingObject::update(float dt, std::list<CollidingObject *> collidingObjec
         // we should adjust the distance to make sure that object will not "stick"
         // in the other object.
         Rectangle *moveBoundariesProjection = new Rectangle(
-                int(this->boundaries->x),
+                this->boundaries->x,
                 int(this->boundaries->y + velocity),
-                int(this->boundaries->width),
-                int(this->boundaries->height)
+                this->boundaries->width,
+                this->boundaries->height
         );
         if (object->collidesTop(moveBoundariesProjection)) {
             moveAdjustment = moveBoundariesProjection->y + moveBoundariesProjection->height - object->getBoundaries()->y;
+//            if (moveAdjustment > 0) {
+//                std::cout << "Adjusting down movement by " << moveAdjustment << std::endl;
+//            }
         }
 
         if (this->collidesBottom(object->getBoundaries())) {

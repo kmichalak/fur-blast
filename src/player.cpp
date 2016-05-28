@@ -1,5 +1,7 @@
 #include <input.h>
 #include <list>
+#include <ostream>
+#include <iostream>
 #include "player.h"
 
 Player::Player(SDL_Renderer *renderer)
@@ -14,7 +16,6 @@ Player::~Player() {
 
 void Player::update(std::list<CollidingObject *> collidingObjects) {
     InputManager &manager = InputManager::getInstance();
-//    CollidingObject *collidingObject;
 
     if (manager.isKeyPressed(SDL_SCANCODE_LEFT)) {
         bool collidesLeft = false;
@@ -23,35 +24,26 @@ void Player::update(std::list<CollidingObject *> collidingObjects) {
         for (CollidingObject *object : collidingObjects) {
 
             Rectangle *moveProjectionBoundaries = new Rectangle(
-                    int(this->boundaries->x + MOVE_SPEED),
-                    int(this->boundaries->y),
-                    int(this->boundaries->width),
-                    int(this->boundaries->height)
+                    int(this->boundaries->x - MOVE_SPEED),
+                    this->boundaries->y,
+                    this->boundaries->width,
+                    this->boundaries->height
             );
 
             if (object->collidesRight(moveProjectionBoundaries)) {
-                moveAdjustment = object->getBoundaries()->x = object->getBoundaries()->width - this->boundaries->x;
+                moveAdjustment = object->getRight() - this->getLeft();
+                std::cout << "Left collision detected" << std::endl;
             }
 
             if (this->collidesLeft(object->getBoundaries())) {
-//                collidingObject = object;
                 collidesLeft = true;
                 break;
             }
         }
 
         if (!collidesLeft) {
-            this->moveLeft(MOVE_SPEED - moveAdjustment);
+            this->moveLeft(float(MOVE_SPEED - moveAdjustment));
         }
-//        else {
-//            do {
-//                moveRight(1);
-//            } while (this->collidesLeft(collidingObject));
-////            float d = this->getBoundaries()->x - collidingObject->getBoundaries()->x;
-////            if (d > 0) {
-////                this->moveRight(getBoundaries()->width - d);
-////            }
-//        }
         this->updateFrames(RUN_LEFT_FRAMES);
     }
     if (manager.isKeyPressed(SDL_SCANCODE_RIGHT)) {
@@ -60,47 +52,26 @@ void Player::update(std::list<CollidingObject *> collidingObjects) {
 
         for (CollidingObject *object : collidingObjects) {
             Rectangle *moveProjectionBoundaries = new Rectangle(
-                    int(this->boundaries->x - MOVE_SPEED),
-                    int(this->boundaries->y),
-                    int(this->boundaries->width),
-                    int(this->boundaries->height)
+                    int(this->boundaries->x + MOVE_SPEED),
+                    this->boundaries->y,
+                    this->boundaries->width,
+                    this->boundaries->height
             );
             if (object->collidesLeft(moveProjectionBoundaries)) {
-                moveAdjustment = this->boundaries->x + this->boundaries->width - object->getBoundaries()->x;
+                moveAdjustment = this->getRight() - object->getLeft();
+                std::cout << "Right collision detected" << std::endl;
             }
 
             if (this->collidesRight(object->getBoundaries())) {
-//                collidingObject = object;
                 collidesRight = true;
                 break;
             }
         }
         if (!collidesRight) {
-            this->moveRight(MOVE_SPEED - moveAdjustment);
+            this->moveRight(float(MOVE_SPEED - moveAdjustment));
         }
-//        else {
-//            while(this->collidesRight(collidingObject)) {
-//                this->moveLeft(1);
-//            }
-//            float d = collidingObject->getBoundaries()->x - this->getBoundaries()->x;
-//            this->moveLeft(getBoundaries()->width - d);
-//        }
         this->updateFrames(RUN_RIGHT_FRAMES);
     }
-
-
-
-
-//    if (manager.isKeyPressed(SDL_SCANCODE_UP)) {
-//        if (!this->hitTopEnd()) {
-////            this->throwUp();
-//        }
-//    }
-//    if (manager.isKeyPressed(SDL_SCANCODE_DOWN)) {
-//        if (!this->hitBottomEnd()) {
-//            this->boundaries->y += MOVE_SPEED;
-//        }
-//    }
 
     if ((manager.isKeyUp(SDL_SCANCODE_LEFT)
          || !manager.isKeyPressed(SDL_SCANCODE_LEFT))
