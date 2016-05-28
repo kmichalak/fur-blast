@@ -13,7 +13,7 @@ CollidingObject::~CollidingObject() {
 bool CollidingObject::collidesRight(Rectangle *collidingObjectBoundaries) {
     int rightEdgePosition = this->getRight();
     return collidingObjectBoundaries->x <= rightEdgePosition
-           && collidingObjectBoundaries->x + collidingObjectBoundaries->width > this->getBoundaries()->x
+           && collidingObjectBoundaries->x + collidingObjectBoundaries->width >= this->getBoundaries()->x
            && this->getBottom() > collidingObjectBoundaries->y
            && this->getTop() < collidingObjectBoundaries->y + collidingObjectBoundaries->height;
 }
