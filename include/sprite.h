@@ -23,14 +23,23 @@ public:
 
     SDL_Rect getSourceRect();
 
-private:
+    bool shouldDrawBorders();
+
+    void mark();
+
+    void unmark();
+
     const char *resourceFile;
+private:
 
     SDL_Texture *texture;
     SDL_Rect sourceRectangle;
 
     void init(SDL_Renderer *pRenderer, bool containsGameTiles);
 
+
+
+    bool drawBorders = false;
 };
 
 #endif //FUR_BLAST_SPRITE_H

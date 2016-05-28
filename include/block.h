@@ -10,6 +10,9 @@ public:
     Block(int x, int y, SDL_Renderer *renderer);
     virtual ~Block();
     Sprite *getSprite();
+
+    void mark();
+
 private:
     Sprite *sprite;
 };

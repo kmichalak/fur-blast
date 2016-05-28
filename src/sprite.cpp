@@ -52,3 +52,16 @@ SDL_Texture *Sprite::getTexture() {
 SDL_Rect Sprite::getSourceRect() {
     return this->sourceRectangle;
 }
+
+void Sprite::mark() {
+    this->drawBorders = true;
+}
+
+void Sprite::unmark() {
+    this->drawBorders = false;
+}
+
+bool Sprite::shouldDrawBorders() {
+    return this->drawBorders;
+}
+

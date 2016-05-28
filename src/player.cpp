@@ -2,6 +2,7 @@
 #include <list>
 #include <ostream>
 #include <iostream>
+#include <block.h>
 #include "player.h"
 
 Player::Player(SDL_Renderer *renderer)
@@ -30,8 +31,11 @@ void Player::update(std::list<CollidingObject *> collidingObjects) {
                     this->boundaries->height
             );
 
+            ((Block *) object)->getSprite()->unmark();
+
             if (object->collidesRight(moveProjectionBoundaries)) {
-                moveAdjustment = object->getRight() - this->getLeft();
+                moveAdjustment = object->getRight() - moveProjectionBoundaries->x + 1;
+                ((Block *) object)->getSprite()->mark();
                 std::cout << "Left collision detected" << std::endl;
             }
 
@@ -51,6 +55,8 @@ void Player::update(std::list<CollidingObject *> collidingObjects) {
         float moveAdjustment = 0;
 
         for (CollidingObject *object : collidingObjects) {
+            ((Block *) object)->getSprite()->unmark();
+
             Rectangle *moveProjectionBoundaries = new Rectangle(
                     int(this->boundaries->x + MOVE_SPEED),
                     this->boundaries->y,
@@ -58,8 +64,8 @@ void Player::update(std::list<CollidingObject *> collidingObjects) {
                     this->boundaries->height
             );
             if (object->collidesLeft(moveProjectionBoundaries)) {
-                moveAdjustment = this->getRight() - object->getLeft();
-                std::cout << "Right collision detected" << std::endl;
+                moveAdjustment = moveProjectionBoundaries->x + 1 + moveProjectionBoundaries->width - object->getLeft();
+                ((Block *) object)->getSprite()->mark();
             }
 
             if (this->collidesRight(object->getBoundaries())) {

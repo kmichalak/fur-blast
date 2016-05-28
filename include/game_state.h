@@ -1,6 +1,7 @@
 #ifndef FUR_BLAST_GAME_STATE_H
 #define FUR_BLAST_GAME_STATE_H
 
+#include <iostream>
 #include "window.h"
 #include "sprite.h"
 
@@ -24,10 +25,47 @@ protected:
     virtual void drawSprite(SDL_Renderer *renderer, Sprite *sprite, Rectangle *destination) {
         const SDL_Rect sourceRect = sprite->getSourceRect();
         const SDL_Rect destinationRect = {
-                (int) destination->x, (int) destination->y,
-                (int) destination->width, (int) destination->height
+                destination->x, destination->y,
+                destination->width, destination->height
         };
         SDL_RenderCopy(renderer, sprite->getTexture(), &sourceRect, &destinationRect);
+
+        if (sprite->shouldDrawBorders()) {
+            Uint8 r, g, b, a;
+            SDL_GetRenderDrawColor(renderer, &r, &g, &b, &a);
+
+            SDL_SetRenderDrawColor(renderer, 128, 0, 0, 0);
+            SDL_RenderDrawLine(
+                    renderer,
+                    destination->x,
+                    destination->y,
+                    destination->x + destination->width,
+                    destination->y
+            );
+            SDL_RenderDrawLine(
+                    renderer,
+                    destination->x + destination->width,
+                    destination->y,
+                    destination->x + destination->width,
+                    destination->y + destination->height
+            );
+            SDL_RenderDrawLine(
+                    renderer,
+                    destination->x,
+                    destination->y + destination->height,
+                    destination->x + destination->width,
+                    destination->y + destination->height
+            );
+            SDL_RenderDrawLine(
+                    renderer,
+                    destination->x,
+                    destination->y,
+                    destination->x,
+                    destination->y + destination->height
+            );
+            SDL_SetRenderDrawColor(renderer, r, g, b, a);
+        }
+
     }
 
 

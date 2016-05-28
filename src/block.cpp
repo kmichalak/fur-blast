@@ -13,3 +13,7 @@ Block::~Block() {
 Sprite *Block::getSprite() {
     return this->sprite;
 }
+
+void Block::mark() {
+
+}

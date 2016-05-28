@@ -3,6 +3,8 @@
 
 #include "rectangle.h"
 
+// TODO: Remove commented code
+
 class GameObject {
 public:
     GameObject();
