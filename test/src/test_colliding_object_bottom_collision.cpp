@@ -1,4 +1,4 @@
-#include "test_colliding_object.h"
+#include "test_colliding_object_bottom_collision.h"
 
 void CollidingObjectTest::SetUp() { }
 
